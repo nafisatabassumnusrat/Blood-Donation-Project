@@ -81,8 +81,8 @@ Designed to connect blood donors across **64+ districts in Bangladesh**.
 Add your project screenshot here.
 
 Example:
-![header](image-1.png)
-![About](image-2.png)
+![header](image-1.png)!
+[About](image-3.png)
 ![Footer](image.png)
 
 # 🎯 Project Goals
