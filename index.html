@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Donor Finder – Bangladesh</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩸</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-drop">
+    <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 4 C30 4 4 34 4 50 C4 65 16 76 30 76 C44 76 56 65 56 50 C56 34 30 4 30 4Z" fill="url(#lg1)"/>
+      <path d="M30 22 C30 22 13 44 13 53 C13 63 21 70 30 70 C39 70 47 63 47 53 C47 44 30 22 30 22Z" fill="white" opacity="0.22"/>
+      <path d="M20 53 C20 53 22 44 29 39" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+      <defs>
+        <linearGradient id="lg1" x1="30" y1="4" x2="30" y2="76" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#ff6b6b"/>
+          <stop offset="100%" stop-color="#c1121f"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <div class="loader-name"><span class="ln-red">BloodDonor</span><span class="ln-black">BD</span></div>
+  <div class="loader-sub">Bangladesh Blood Donor Network</div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+</div>
+
+<!-- SCROLL CURSOR -->
+<div class="scroll-cursor" id="scrollCursor">
+  <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 4 C30 4 4 34 4 50 C4 65 16 76 30 76 C44 76 56 65 56 50 C56 34 30 4 30 4Z" fill="#e63946" opacity="0.9"/>
+    <path d="M30 22 C30 22 13 44 13 53 C13 63 21 70 30 70 C39 70 47 63 47 53 C47 44 30 22 30 22Z" fill="white" opacity="0.2"/>
+  </svg>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-logo">
+      <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="42">
+        <path d="M30 4 C30 4 4 34 4 50 C4 65 16 76 30 76 C44 76 56 65 56 50 C56 34 30 4 30 4Z" fill="url(#navLg)"/>
+        <path d="M30 22 C30 22 13 44 13 53 C13 63 21 70 30 70 C39 70 47 63 47 53 C47 44 30 22 30 22Z" fill="white" opacity="0.22"/>
+        <path d="M20 53 C20 53 22 44 29 39" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+        <defs>
+          <linearGradient id="navLg" x1="30" y1="4" x2="30" y2="76" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ff6b6b"/>
+            <stop offset="100%" stop-color="#c1121f"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="nav-logo-text">
+        <div><span style="color:#e63946;font-size:1rem;font-weight:800">BloodDonor</span><span style="color:var(--text);font-size:1rem;font-weight:800">BD</span></div>
+        
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#register">Register Donor</a></li>
+      <li><a href="#find">Find Donor</a></li>
+      <li><a href="#emergency">Emergency</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle">বাংলা</button>
+      <label class="dark-toggle" title="Toggle dark mode">
+        <span class="toggle-icon">☀️</span>
+        <div class="toggle-track" id="toggleTrack">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span class="toggle-icon">🌙</span>
+      </label>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-nav-menu">
+    <li><a href="#home" onclick="closeMenu()">🏠 Home</a></li>
+    <li><a href="#register" onclick="closeMenu()">📋 Register Donor</a></li>
+    <li><a href="#find" onclick="closeMenu()">🔍 Find Donor</a></li>
+    <li><a href="#emergency" onclick="closeMenu()">🚨 Emergency</a></li>
+    <li><a href="#about" onclick="closeMenu()">ℹ️ About</a></li>
+  </ul>
+  <div class="mobile-right">
+    <button class="lang-toggle" id="langToggle2">বাংলা</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-tag" data-en="🇧🇩 Bangladesh Blood Donor Network" data-bn="🇧🇩 বাংলাদেশ রক্তদাতা নেটওয়ার্ক">🇧🇩 Bangladesh Blood Donor Network</div>
+        <h1 class="hero-title" data-en='Save Lives.<br><span class="red">Donate Blood.</span><br>Find Donors.' data-bn='জীবন বাঁচান।<br><span class="red">রক্ত দান করুন।</span><br>দাতা খুঁজুন।'>
+          Save Lives.<br>
+          <span class="red">Donate Blood.</span><br>
+          Find Donors.
+        </h1>
+        <p class="hero-subtitle" data-en-text="Connect with blood donors instantly during emergency situations across Bangladesh. Every drop counts — be a hero today." data-bn-text="বাংলাদেশ জুড়ে জরুরি পরিস্থিতিতে রক্তদাতাদের সাথে তাৎক্ষণিকভাবে সংযোগ করুন। প্রতিটি ফোঁটা গুরুত্বপূর্ণ।">Connect with blood donors instantly during emergency situations across Bangladesh. Every drop counts — be a hero today.</p>
+        <div class="hero-btns">
+          <a href="#register" class="btn btn-primary" data-en-text="🩸 Register as Donor" data-bn-text="🩸 দাতা হিসেবে নিবন্ধন করুন">🩸 Register as Donor</a>
+          <a href="#find" class="btn btn-outline" data-en-text="🔍 Find Blood Donor" data-bn-text="🔍 রক্তদাতা খুঁজুন">🔍 Find Blood Donor</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-blob">
+          <div class="hero-drop">
+            <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 10 C100 10 20 100 20 155 C20 201 57 240 100 240 C143 240 180 201 180 155 C180 100 100 10 100 10Z" fill="url(#dropGrad)"/>
+              <path d="M100 50 C100 50 45 120 45 158 C45 188 70 210 100 210 C130 210 155 188 155 158 C155 120 100 50 100 50Z" fill="white" opacity="0.18"/>
+              <path d="M68 158 C68 158 73 133 90 118" stroke="white" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+              <path d="M120 80 L130 70 M130 100 L144 96 M118 110 L128 118" stroke="#e63946" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+              <circle cx="155" cy="65" r="8" fill="#e63946" opacity="0.4"/>
+              <circle cx="42" cy="95" r="5" fill="#e63946" opacity="0.3"/>
+              <circle cx="165" cy="130" r="4" fill="#e63946" opacity="0.25"/>
+              <defs>
+                <linearGradient id="dropGrad" x1="100" y1="10" x2="100" y2="240" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ff6b6b"/>
+                  <stop offset="100%" stop-color="#c1121f"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="hero-stat" style="top:8%;right:-5%">
+            <span class="stat-icon">🩸</span>
+            <div>
+              <div class="stat-num">10K+</div>
+              <div class="stat-label">Registered Donors</div>
+            </div>
+          </div>
+          <div class="hero-stat" style="bottom:10%;left:-8%">
+            <span class="stat-icon">💉</span>
+            <div>
+              <div class="stat-num">3 Months</div>
+              <div class="stat-label">Safe Donation Interval</div>
+            </div>
+          </div>
+          <div class="hero-stat" style="top:48%;right:-12%">
+            <span class="stat-icon">🏥</span>
+            <div>
+              <div class="stat-num">64+</div>
+              <div class="stat-label">Districts Covered</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section reveal from-right" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-circle">
+          <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 10 C60 10 15 60 15 95 C15 125 35 150 60 150 C85 150 105 125 105 95 C105 60 60 10 60 10Z" fill="url(#aboutGrad)" opacity="0.85"/>
+            <path d="M60 40 C60 40 30 75 30 97 C30 115 43 130 60 130 C77 130 90 115 90 97 C90 75 60 40 60 40Z" fill="white" opacity="0.2"/>
+            <defs>
+              <linearGradient id="aboutGrad" x1="60" y1="10" x2="60" y2="150" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ff8080"/>
+                <stop offset="100%" stop-color="#e63946"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-label" data-en-text="Our Mission" data-bn-text="আমাদের লক্ষ্য">Our Mission</div>
+        <h2 class="section-title" data-en-text="About This Project" data-bn-text="এই প্রকল্প সম্পর্কে">About This Project</h2>
+        <p data-en-text="This project — Blood Donor Finder Bangladesh — is a frontend prototype designed to demonstrate how web technology can solve real-life social problems." data-bn-text="এই প্রকল্প — ব্লাড ডোনার ফাইন্ডার বাংলাদেশ — একটি ফ্রন্টএন্ড প্রোটোটাইপ যা দেখায় কিভাবে ওয়েব প্রযুক্তি বাস্তব জীবনের সামাজিক সমস্যা সমাধান করতে পারে।">This project — <strong>Blood Donor Finder Bangladesh</strong> — is a frontend prototype designed to demonstrate how web technology can solve real-life social problems.</p>
+        <p data-en-text="In Bangladesh, blood emergencies are a daily reality. Thousands of lives are at risk due to difficulty in locating compatible donors quickly. This platform bridges the gap between donors and those in urgent need." data-bn-text="বাংলাদেশে রক্তের জরুরি অবস্থা প্রতিদিনের বাস্তবতা। দ্রুত সামঞ্জস্যপূর্ণ দাতা খুঁজে পাওয়ার কারণে হাজারো জীবন ঝুঁকিতে থাকে। এই প্ল্যাটফর্ম দাতা ও জরুরি প্রয়োজনে থাকা মানুষের মধ্যে সেতুবন্ধ তৈরি করে।">In Bangladesh, blood emergencies are a daily reality. Thousands of lives are at risk due to difficulty in locating compatible donors quickly. This platform bridges the gap between donors and those in urgent need.</p>
+        <p data-en-text="Donor data is stored securely using browser localStorage — meaning your information stays on your device. No data is shared with third parties." data-bn-text="দাতার তথ্য ব্রাউজার localStorage ব্যবহার করে নিরাপদে সংরক্ষিত হয় — অর্থাৎ আপনার তথ্য আপনার ডিভাইসেই থাকে। কোনো তথ্য তৃতীয় পক্ষের সাথে শেয়ার করা হয় না।">Donor data is stored securely using browser localStorage — meaning your information stays on your device. No data is shared with third parties.</p>
+        <div class="about-tags">
+          <span class="about-tag" data-en-text="🇧🇩 Made for Bangladesh" data-bn-text="🇧🇩 বাংলাদেশের জন্য তৈরি">🇧🇩 Made for Bangladesh</span>
+          <span class="about-tag" data-en-text="💻 Frontend Prototype" data-bn-text="💻 ফ্রন্টএন্ড প্রোটোটাইপ">💻 Frontend Prototype</span>
+          <span class="about-tag" data-en-text="❤️ Social Impact" data-bn-text="❤️ সামাজিক প্রভাব">❤️ Social Impact</span>
+          <span class="about-tag" data-en-text="🔒 Privacy First" data-bn-text="🔒 গোপনীয়তা প্রথমে">🔒 Privacy First</span>
+          <span class="about-tag" data-en-text="📱 Mobile Friendly" data-bn-text="📱 মোবাইল বান্ধব">📱 Mobile Friendly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER DONOR -->
+<section class="section register-section reveal from-left" id="register">
+  <div class="container">
+    <div class="reg-grid">
+      <div class="reg-info">
+        <div class="section-label" data-en-text="Become a Hero" data-bn-text="হিরো হোন">Become a Hero</div>
+        <h2 class="section-title" data-en-text="Register as a Blood Donor" data-bn-text="রক্তদাতা হিসেবে নিবন্ধন করুন">Register as a Blood Donor</h2>
+        <p class="section-sub" style="margin-bottom:28px" data-en-text="Join thousands of voluntary donors across Bangladesh. Your single donation can save up to 3 lives." data-bn-text="বাংলাদেশ জুড়ে হাজার হাজার স্বেচ্ছাসেবী দাতাদের সাথে যোগ দিন। আপনার একটি দান ৩টি জীবন বাঁচাতে পারে।">Join thousands of voluntary donors across Bangladesh. Your single donation can save up to 3 lives.</p>
+        <div class="reg-perks">
+          <div class="perk"><div class="perk-icon">✅</div> <span data-en-text="Free registration, no cost at all" data-bn-text="বিনামূল্যে নিবন্ধন, কোনো খরচ নেই">Free registration, no cost at all</span></div>
+          <div class="perk"><div class="perk-icon">🔒</div> <span data-en-text="Your data is stored locally &amp; privately" data-bn-text="আপনার তথ্য স্থানীয়ভাবে ও গোপনে সংরক্ষিত">Your data is stored locally &amp; privately</span></div>
+          <div class="perk"><div class="perk-icon">📱</div> <span data-en-text="Get contacted only during emergencies" data-bn-text="শুধুমাত্র জরুরি পরিস্থিতিতে যোগাযোগ করা হবে">Get contacted only during emergencies</span></div>
+          <div class="perk"><div class="perk-icon">🏅</div> <span data-en-text="Join a community of life-savers" data-bn-text="জীবন-রক্ষাকারীদের একটি সম্প্রদায়ে যোগ দিন">Join a community of life-savers</span></div>
+          <div class="perk"><div class="perk-icon">🩺</div> <span data-en-text="Healthy adults can donate every 3 months" data-bn-text="সুস্থ প্রাপ্তবয়স্করা প্রতি ৩ মাসে দান করতে পারেন">Healthy adults can donate every 3 months</span></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-title" data-en-text="📋 Donor Registration Form" data-bn-text="📋 দাতা নিবন্ধন ফর্ম">📋 Donor Registration Form</div>
+        <form id="registerForm" novalidate>
+          <div class="form-group">
+            <label data-en-text="Full Name *" data-bn-text="পূর্ণ নাম *">Full Name *</label>
+            <input type="text" id="reg-name" data-en-ph="Enter your full name" data-bn-ph="আপনার পূর্ণ নাম লিখুন" placeholder="Enter your full name">
+            <div class="error-msg" id="err-name">Please enter your full name</div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label data-en-text="Blood Group *" data-bn-text="রক্তের গ্রুপ *">Blood Group *</label>
+              <select id="reg-blood">
+                <option value="" data-en-text="Select Blood Group" data-bn-text="রক্তের গ্রুপ নির্বাচন করুন">Select Blood Group</option>
+                <option>A+</option><option>A-</option>
+                <option>B+</option><option>B-</option>
+                <option>O+</option><option>O-</option>
+                <option>AB+</option><option>AB-</option>
+              </select>
+              <div class="error-msg" id="err-blood">Please select blood group</div>
+            </div>
+            <div class="form-group">
+              <label data-en-text="Phone Number *" data-bn-text="ফোন নম্বর *">Phone Number *</label>
+              <input type="tel" id="reg-phone" data-en-ph="+880 1XXX-XXXXXX" data-bn-ph="+৮৮০ ০১XXX-XXXXXX" placeholder="+880 1XXX-XXXXXX">
+              <div class="error-msg" id="err-phone">Enter a valid BD number (e.g. 01711-234567)</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-en-text="Location / Area *" data-bn-text="অবস্থান / এলাকা *">Location / Area *</label>
+            <input type="text" id="reg-location" data-en-ph="e.g. Dhaka, Mirpur" data-bn-ph="যেমন: ঢাকা, মিরপুর" placeholder="e.g. Dhaka, Mirpur">
+            <div class="error-msg" id="err-location">Please enter your location</div>
+          </div>
+          <div class="form-group">
+            <label>
+              <span data-en-text="Last Donation Date" data-bn-text="শেষ রক্তদানের তারিখ">Last Donation Date</span>
+              <span style="color:var(--text3);font-weight:400" data-en-text=" (optional)" data-bn-text=" (ঐচ্ছিক)"> (optional)</span>
+            </label>
+            <input type="date" id="reg-date">
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" data-en-text="❤️ Register as Donor" data-bn-text="❤️ দাতা হিসেবে নিবন্ধন করুন">❤️ Register as Donor</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIND DONOR -->
+<section class="section find-section reveal from-right" id="find">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-label" style="justify-content:center" data-en-text="Search Donors" data-bn-text="দাতা অনুসন্ধান">Search Donors</div>
+      <h2 class="section-title" data-en-text="Find a Blood Donor" data-bn-text="একজন রক্তদাতা খুঁজুন">Find a Blood Donor</h2>
+      <p class="section-sub" style="margin-bottom:0" data-en-text="Search our donor database by blood group and location" data-bn-text="রক্তের গ্রুপ এবং অবস্থান দিয়ে আমাদের দাতা ডেটাবেস অনুসন্ধান করুন">Search our donor database by blood group and location</p>
+    </div>
+    <div class="search-bar">
+      <div>
+        <label data-en-text="Blood Group" data-bn-text="রক্তের গ্রুপ">Blood Group</label>
+        <select id="search-blood">
+          <option value="" data-en-text="All Blood Groups" data-bn-text="সকল রক্তের গ্রুপ">All Blood Groups</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option>
+          <option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+      <div>
+        <label data-en-text="Area / Location" data-bn-text="এলাকা / অবস্থান">Area / Location</label>
+        <input type="text" id="search-area" data-en-ph="e.g. Dhaka, Chittagong..." data-bn-ph="যেমন: ঢাকা, চট্টগ্রাম..." placeholder="e.g. Dhaka, Chittagong...">
+      </div>
+      <button class="btn btn-primary" onclick="searchDonors()" data-en-text="🔍 Search" data-bn-text="🔍 অনুসন্ধান">🔍 Search</button>
+    </div>
+    <div class="donors-grid" id="donorsGrid"></div>
+  </div>
+</section>
+
+<!-- EMERGENCY -->
+<section class="section emergency-section reveal from-left" id="emergency">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-label" style="justify-content:center" data-en-text="Emergency Contacts" data-bn-text="জরুরি যোগাযোগ">Emergency Contacts</div>
+      <h2 class="section-title" data-en-text="Emergency Helpline" data-bn-text="জরুরি হেল্পলাইন">Emergency Helpline</h2>
+      <p class="section-sub" style="margin-bottom:0" data-en-text="Call these numbers immediately in case of blood emergencies" data-bn-text="রক্তের জরুরি প্রয়োজনে এখনই এই নম্বরগুলোতে কল করুন">Call these numbers immediately in case of blood emergencies</p>
+    </div>
+    <div class="emergency-grid">
+      <div class="emergency-card urgent">
+        <span class="emerg-icon">🚨</span>
+        <div class="emerg-name" data-en-text="National Emergency Service" data-bn-text="জাতীয় জরুরি সেবা">National Emergency Service</div>
+        <p class="emerg-desc" data-en-text="Bangladesh's unified emergency hotline for all life-threatening situations including medical emergencies requiring blood." data-bn-text="রক্তের প্রয়োজনসহ সকল জীবন-বিপন্নকারী পরিস্থিতির জন্য বাংলাদেশের একীভূত জরুরি হটলাইন।">Bangladesh's unified emergency hotline for all life-threatening situations including medical emergencies requiring blood.</p>
+        <div class="emerg-number">📞 999</div>
+      </div>
+      <div class="emergency-card">
+        <span class="emerg-icon">🩸</span>
+        <div class="emerg-name" data-en-text="Red Crescent Blood Bank" data-bn-text="রেড ক্রিসেন্ট ব্লাড ব্যাংক">Red Crescent Blood Bank</div>
+        <p class="emerg-desc" data-en-text="Bangladesh Red Crescent Society blood bank services. Available across major cities with 24/7 emergency blood supply." data-bn-text="বাংলাদেশ রেড ক্রিসেন্ট সোসাইটির ব্লাড ব্যাংক সেবা। ২৪/৭ জরুরি রক্ত সরবরাহসহ প্রধান শহরে পাওয়া যায়।">Bangladesh Red Crescent Society blood bank services. Available across major cities with 24/7 emergency blood supply.</p>
+        <div class="emerg-number">📞 02-9112326</div>
+      </div>
+      <div class="emergency-card">
+        <span class="emerg-icon">🏥</span>
+        <div class="emerg-name" data-en-text="Sandhani Blood Bank" data-bn-text="সন্ধানী ব্লাড ব্যাংক">Sandhani Blood Bank</div>
+        <p class="emerg-desc" data-en-text="Volunteer blood donation organization run by medical students. Provides emergency blood service across Bangladesh." data-bn-text="মেডিকেল ছাত্রদের পরিচালিত স্বেচ্ছাসেবী রক্তদান সংগঠন। সারা বাংলাদেশে জরুরি রক্ত সেবা প্রদান করে।">Volunteer blood donation organization run by medical students. Provides emergency blood service across Bangladesh.</p>
+        <div class="emerg-number">📞 01XXXXXXXXX</div>
+      </div>
+      <div class="emergency-card">
+        <span class="emerg-icon">🏨</span>
+        <div class="emerg-name" data-en-text="DGHS Blood Bank Helpline" data-bn-text="স্বাস্থ্য অধিদপ্তর ব্লাড ব্যাংক">DGHS Blood Bank Helpline</div>
+        <p class="emerg-desc" data-en-text="Directorate General of Health Services — government blood transfusion services and emergency referral support." data-bn-text="স্বাস্থ্য সেবা অধিদপ্তর — সরকারি রক্ত সঞ্চালন সেবা ও জরুরি রেফারেল সহায়তা।">Directorate General of Health Services — government blood transfusion services and emergency referral support.</p>
+        <div class="emerg-number">📞 16000</div>
+      </div>
+      <div class="emergency-card">
+        <span class="emerg-icon">🚑</span>
+        <div class="emerg-name" data-en-text="Quantum Blood Bank" data-bn-text="কোয়ান্টাম ব্লাড ব্যাংক">Quantum Blood Bank</div>
+        <p class="emerg-desc" data-en-text="Quantum Foundation operates one of the largest voluntary blood donor networks in Bangladesh with emergency support." data-bn-text="কোয়ান্টাম ফাউন্ডেশন বাংলাদেশে অন্যতম বৃহত্তম স্বেচ্ছাসেবী রক্তদাতা নেটওয়ার্ক পরিচালনা করে।">Quantum Foundation operates one of the largest voluntary blood donor networks in Bangladesh with emergency support.</p>
+        <div class="emerg-number">📞 10606</div>
+      </div>
+      <div class="emergency-card">
+        <span class="emerg-icon">💊</span>
+        <div class="emerg-name" data-en-text="Dhaka Medical College Hospital" data-bn-text="ঢাকা মেডিকেল কলেজ হাসপাতাল">Dhaka Medical College Hospital</div>
+        <p class="emerg-desc" data-en-text="Largest government hospital in Bangladesh with comprehensive blood bank services available round the clock." data-bn-text="বাংলাদেশের বৃহত্তম সরকারি হাসপাতাল, যেখানে ২৪ ঘণ্টা পূর্ণাঙ্গ ব্লাড ব্যাংক সেবা পাওয়া যায়।">Largest government hospital in Bangladesh with comprehensive blood bank services available round the clock.</p>
+        <div class="emerg-number">📞 02-55165088</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARENESS -->
+<section class="section awareness-section reveal from-right">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-label" style="justify-content:center" data-en-text="Health Tips" data-bn-text="স্বাস্থ্য টিপস">Health Tips</div>
+      <h2 class="section-title" data-en-text="Blood Donation Awareness" data-bn-text="রক্তদান সচেতনতা">Blood Donation Awareness</h2>
+      <p class="section-sub" style="margin-bottom:0" data-en-text="Everything you need to know about donating blood safely" data-bn-text="নিরাপদে রক্তদান সম্পর্কে আপনার যা জানা দরকার">Everything you need to know about donating blood safely</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">❤️</span>
+        <div class="tip-title" data-en-text="Blood Donation Saves Lives" data-bn-text="রক্তদান জীবন বাঁচায়">Blood Donation Saves Lives</div>
+        <p class="tip-text" data-en-text="One unit of blood can save up to 3 lives. Accident victims, surgery patients, and cancer patients all depend on voluntary donors." data-bn-text="রক্তের একটি ইউনিট ৩টি পর্যন্ত জীবন বাঁচাতে পারে। দুর্ঘটনার শিকার, অস্ত্রোপচারের রোগী ও ক্যান্সার রোগীরা স্বেচ্ছাসেবী দাতাদের উপর নির্ভর করেন।">One unit of blood can save up to 3 lives. Accident victims, surgery patients, and cancer patients all depend on voluntary donors.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">📅</span>
+        <div class="tip-title" data-en-text="Donate Every 3 Months" data-bn-text="প্রতি ৩ মাসে দান করুন">Donate Every 3 Months</div>
+        <p class="tip-text" data-en-text="Healthy adults can safely donate whole blood every 3 months (90 days). Your body replenishes blood within 4–8 weeks." data-bn-text="সুস্থ প্রাপ্তবয়স্করা প্রতি ৩ মাস (৯০ দিন) পরপর নিরাপদে সম্পূর্ণ রক্ত দান করতে পারেন। শরীর ৪-৮ সপ্তাহের মধ্যে রক্ত পুনরায় তৈরি করে।">Healthy adults can safely donate whole blood every 3 months (90 days). Your body replenishes blood within 4–8 weeks.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">💧</span>
+        <div class="tip-title" data-en-text="Drink Plenty of Water" data-bn-text="প্রচুর পানি পান করুন">Drink Plenty of Water</div>
+        <p class="tip-text" data-en-text="Stay well-hydrated before donation. Drink at least 500ml of water in the hours before your appointment for a smoother process." data-bn-text="দান করার আগে পর্যাপ্ত পানি পান করুন। মসৃণ প্রক্রিয়ার জন্য অ্যাপয়েন্টমেন্টের কয়েক ঘণ্টা আগে কমপক্ষে ৫০০ মিলি পানি পান করুন।">Stay well-hydrated before donation. Drink at least 500ml of water in the hours before your appointment for a smoother process.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🥗</span>
+        <div class="tip-title" data-en-text="Eat Healthy Beforehand" data-bn-text="আগে স্বাস্থ্যকর খাবার খান">Eat Healthy Beforehand</div>
+        <p class="tip-text" data-en-text="Have a nutritious, iron-rich meal 2–3 hours before donating. Avoid fatty foods. Eat well after donation to replenish energy." data-bn-text="দান করার ২-৩ ঘণ্টা আগে পুষ্টিকর, আয়রনসমৃদ্ধ খাবার খান। চর্বিযুক্ত খাবার এড়িয়ে চলুন। শক্তি ফিরে পেতে দান করার পরেও ভালো খাবার খান।">Have a nutritious, iron-rich meal 2–3 hours before donating. Avoid fatty foods. Eat well after donation to replenish energy.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">⚖️</span>
+        <div class="tip-title" data-en-text="Weight & Age Eligibility" data-bn-text="ওজন ও বয়সের যোগ্যতা">Weight &amp; Age Eligibility</div>
+        <p class="tip-text" data-en-text="Donors must be 18–60 years old and weigh at least 50kg. You'll pass a brief health check before donating." data-bn-text="দাতাদের বয়স ১৮-৬০ বছর এবং ওজন কমপক্ষে ৫০ কেজি হতে হবে। দান করার আগে একটি সংক্ষিপ্ত স্বাস্থ্য পরীক্ষা করা হবে।">Donors must be 18–60 years old and weigh at least 50kg. You'll pass a brief health check before donating.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">😴</span>
+        <div class="tip-title" data-en-text="Rest After Donation" data-bn-text="দানের পর বিশ্রাম নিন">Rest After Donation</div>
+        <p class="tip-text" data-en-text="Take it easy for 24 hours after donating. Avoid heavy exercise, smoking, and alcohol on donation day." data-bn-text="দান করার পর ২৪ ঘণ্টা আরামে থাকুন। দান করার দিন ভারী ব্যায়াম, ধূমপান এবং মদ্যপান এড়িয়ে চলুন।">Take it easy for 24 hours after donating. Avoid heavy exercise, smoking, and alcohol on donation day.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🩺</span>
+        <div class="tip-title" data-en-text="Blood Is Tested For Safety" data-bn-text="রক্ত নিরাপত্তার জন্য পরীক্ষিত">Blood Is Tested For Safety</div>
+        <p class="tip-text" data-en-text="Every donated unit is tested for infectious diseases before use. Blood banks follow strict protocols to ensure patient safety." data-bn-text="প্রতিটি দান করা ইউনিট ব্যবহারের আগে সংক্রামক রোগের জন্য পরীক্ষা করা হয়। ব্লাড ব্যাংক রোগীর নিরাপত্তা নিশ্চিত করতে কঠোর প্রোটোকল অনুসরণ করে।">Every donated unit is tested for infectious diseases before use. Blood banks follow strict protocols to ensure patient safety.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🌟</span>
+        <div class="tip-title" data-en-text="Be a Voluntary Donor" data-bn-text="স্বেচ্ছাসেবী দাতা হোন">Be a Voluntary Donor</div>
+        <p class="tip-text" data-en-text="Voluntary, unpaid donors are the safest source of blood. Registering as a regular donor helps build a reliable supply for emergencies." data-bn-text="স্বেচ্ছাসেবী, বিনামূল্যে দাতারা রক্তের সবচেয়ে নিরাপদ উৎস। নিয়মিত দাতা হিসেবে নিবন্ধন করলে জরুরি পরিস্থিতির জন্য একটি নির্ভরযোগ্য সরবরাহ তৈরি হয়।">Voluntary, unpaid donors are the safest source of blood. Registering as a regular donor helps build a reliable supply for emergencies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4 data-en-text="Quick Links" data-bn-text="দ্রুত লিঙ্ক">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home" data-en-text="Home" data-bn-text="হোম">Home</a></li>
+          <li><a href="#register" data-en-text="Register Donor" data-bn-text="দাতা নিবন্ধন">Register Donor</a></li>
+          <li><a href="#find" data-en-text="Find Donor" data-bn-text="দাতা খুঁজুন">Find Donor</a></li>
+          <li><a href="#emergency" data-en-text="Emergency" data-bn-text="জরুরি">Emergency</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en-text="Legal" data-bn-text="আইনি তথ্য">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#about" data-en-text="About Us" data-bn-text="আমাদের সম্পর্কে">About Us</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('privacy')" data-en-text="🔒 Privacy Policy" data-bn-text="🔒 গোপনীয়তা নীতি">🔒 Privacy Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('terms')" data-en-text="📄 Terms & Conditions" data-bn-text="📄 শর্তাবলী">📄 Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en-text="Developer" data-bn-text="ডেভেলপার">Developer</h4>
+        <div class="dev-credit">
+          <p data-en-text="Developed &amp; Designed by" data-bn-text="তৈরি ও ডিজাইন করেছেন">Developed &amp; Designed by</p>
+          <div class="dev-name">Nafisa Tabassum Nusrat</div>
+          <p style="font-size:0.82rem" data-en-text="Frontend Developer &amp; Designer" data-bn-text="ফ্রন্টএন্ড ডেভেলপার ও ডিজাইনার">Frontend Developer &amp; Designer</p>
+          <div class="dev-socials">
+            <a href="https://www.linkedin.com/in/nafisa-tabassum-nusrat-57134721a/" target="_blank" class="social-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/nafisatabassumnusrat" target="_blank" class="social-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a href="#home" class="footer-logo">
+        <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="42">
+          <path d="M30 4 C30 4 4 34 4 50 C4 65 16 76 30 76 C44 76 56 65 56 50 C56 34 30 4 30 4Z" fill="url(#footLg)"/>
+          <path d="M30 22 C30 22 13 44 13 53 C13 63 21 70 30 70 C39 70 47 63 47 53 C47 44 30 22 30 22Z" fill="white" opacity="0.22"/>
+          <path d="M20 53 C20 53 22 44 29 39" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <defs>
+            <linearGradient id="footLg" x1="30" y1="4" x2="30" y2="76" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ff6b6b"/>
+              <stop offset="100%" stop-color="#c1121f"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span style="color:#e63946;font-size:1rem;font-weight:800">BloodDonor</span><span style="color:#d0d0e8;font-size:1rem;font-weight:800">BD</span>
+      </a>
+      <p data-en-text="© 2025 Blood Donor Finder Bangladesh. Built for social good. 🇧🇩" data-bn-text="© ২০২৫ ব্লাড ডোনার ফাইন্ডার বাংলাদেশ। সামাজিক কল্যাণে নির্মিত। 🇧🇩">© 2025 Blood Donor Finder Bangladesh. Built for social good. 🇧🇩</p>
+      <p data-en-text="Made with  Nafisa Tabassum Nusrat" data-bn-text=" তৈরি করেছেন নাফিসা তাবাস্সুম নুসরাত">Made  by Nafisa Tabassum Nusrat</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ PRIVACY POLICY MODAL ══════════ -->
+<div class="lp-overlay" id="modal-privacy">
+  <div class="lp-page">
+    <div class="lp-sidebar">
+      <div class="lp-sidebar-header">
+        <span class="lp-sidebar-icon">🔒</span>
+        <span class="lp-sidebar-label" data-en-text="PRIVACY POLICY" data-bn-text="গোপনীয়তা নীতি">PRIVACY POLICY</span>
+      </div>
+      <div class="lp-sidebar-label2" data-en-text="CONTENTS" data-bn-text="বিষয়বস্তু">CONTENTS</div>
+      <nav class="lp-toc" id="priv-toc">
+        <a href="#" class="lp-toc-item active" data-sec="priv-s1"><span class="lp-toc-dot"></span><span data-en-text="Data Storage" data-bn-text="তথ্য সংরক্ষণ">Data Storage</span><span class="lp-toc-num">01</span></a>
+        <a href="#" class="lp-toc-item" data-sec="priv-s2"><span class="lp-toc-dot"></span><span data-en-text="Info We Collect" data-bn-text="যা সংগ্রহ করি">Info We Collect</span><span class="lp-toc-num">02</span></a>
+        <a href="#" class="lp-toc-item" data-sec="priv-s3"><span class="lp-toc-dot"></span><span data-en-text="What We Don't Do" data-bn-text="আমরা যা করি না">What We Don't Do</span><span class="lp-toc-num">03</span></a>
+        <a href="#" class="lp-toc-item" data-sec="priv-s4"><span class="lp-toc-dot"></span><span data-en-text="Data Deletion" data-bn-text="তথ্য মুছে ফেলা">Data Deletion</span><span class="lp-toc-num">04</span></a>
+        <a href="#" class="lp-toc-item" data-sec="priv-s5"><span class="lp-toc-dot"></span><span data-en-text="Your Consent" data-bn-text="আপনার সম্মতি">Your Consent</span><span class="lp-toc-num">05</span></a>
+        <a href="#" class="lp-toc-item" data-sec="priv-s6"><span class="lp-toc-dot"></span><span data-en-text="Contact" data-bn-text="যোগাযোগ">Contact</span><span class="lp-toc-num">06</span></a>
+      </nav>
+    </div>
+    <div class="lp-body" id="priv-body">
+      <button class="lp-close" onclick="closeModal('privacy')">✕</button>
+      <div class="lp-section" id="priv-s1">
+        <div class="lp-section-tag" data-en-text="— 01 — DATA STORAGE" data-bn-text="— ০১ — তথ্য সংরক্ষণ">— 01 — DATA STORAGE</div>
+        <h2 class="lp-h2" data-en-text="Data Storage" data-bn-text="তথ্য সংরক্ষণ">Data Storage</h2>
+        <p class="lp-p" data-en-text="Blood Donor Finder Bangladesh stores all donor information exclusively in your browser's localStorage. This means your data never leaves your device and is not transmitted to any external server or third party." data-bn-text="ব্লাড ডোনার ফাইন্ডার বাংলাদেশ সমস্ত দাতার তথ্য শুধুমাত্র আপনার ব্রাউজারের localStorage-এ সংরক্ষণ করে। এর মানে আপনার তথ্য কখনো আপনার ডিভাইস ছেড়ে যায় না এবং কোনো বাহ্যিক সার্ভার বা তৃতীয় পক্ষের কাছে পাঠানো হয় না।">Blood Donor Finder Bangladesh stores all donor information exclusively in your browser's localStorage. This means your data never leaves your device and is not transmitted to any external server or third party.</p>
+        <div class="lp-highlight" data-en-text="🔒 Your data stays 100% on your own device — always private and secure." data-bn-text="🔒 আপনার তথ্য ১০০% আপনার নিজের ডিভাইসেই থাকে — সবসময় ব্যক্তিগত এবং সুরক্ষিত।">🔒 Your data stays 100% on your own device — always private and secure.</div>
+      </div>
+      <div class="lp-section" id="priv-s2">
+        <div class="lp-section-tag" data-en-text="— 02 — INFORMATION WE COLLECT" data-bn-text="— ০২ — আমরা যা তথ্য সংগ্রহ করি">— 02 — INFORMATION WE COLLECT</div>
+        <h2 class="lp-h2" data-en-text="Information We Collect" data-bn-text="আমরা যা তথ্য সংগ্রহ করি">Information We Collect</h2>
+        <p class="lp-p" data-en-text="When you register as a donor, we collect only what is necessary to connect you with those in need:" data-bn-text="আপনি দাতা হিসেবে নিবন্ধন করলে, আমরা শুধুমাত্র প্রয়োজনীয় তথ্য সংগ্রহ করি যা আপনাকে প্রয়োজনে সংযুক্ত করতে সাহায্য করে:">When you register as a donor, we collect only what is necessary to connect you with those in need:</p>
+        <ul class="lp-ul">
+          <li data-en-text="Full Name — to identify you as a donor" data-bn-text="পূর্ণ নাম — দাতা হিসেবে আপনাকে সনাক্ত করতে"><strong data-en-text="Full Name" data-bn-text="পূর্ণ নাম">Full Name</strong> — <span data-en-text="to identify you as a donor" data-bn-text="দাতা হিসেবে আপনাকে সনাক্ত করতে">to identify you as a donor</span></li>
+          <li><strong data-en-text="Blood Group" data-bn-text="রক্তের গ্রুপ">Blood Group</strong> — <span data-en-text="to match with recipients" data-bn-text="গ্রহীতার সাথে মেলাতে">to match with recipients</span></li>
+          <li><strong data-en-text="Location / Area" data-bn-text="অবস্থান / এলাকা">Location / Area</strong> — <span data-en-text="to show nearby donors" data-bn-text="কাছের দাতা দেখাতে">to show nearby donors</span></li>
+          <li><strong data-en-text="Phone Number" data-bn-text="ফোন নম্বর">Phone Number</strong> — <span data-en-text="so recipients can contact you directly" data-bn-text="যাতে গ্রহীতা সরাসরি আপনার সাথে যোগাযোগ করতে পারে">so recipients can contact you directly</span></li>
+          <li><strong data-en-text="Last Donation Date" data-bn-text="শেষ রক্তদানের তারিখ">Last Donation Date</strong> <span data-en-text="(optional) — to indicate donation readiness" data-bn-text="(ঐচ্ছিক) — দানের প্রস্তুতি নির্দেশ করতে">(optional) — to indicate donation readiness</span></li>
+        </ul>
+      </div>
+      <div class="lp-section" id="priv-s3">
+        <div class="lp-section-tag" data-en-text="— 03 — WHAT WE DON'T DO" data-bn-text="— ০৩ — আমরা যা করি না">— 03 — WHAT WE DON'T DO</div>
+        <h2 class="lp-h2" data-en-text="What We Don't Do" data-bn-text="আমরা যা করি না">What We Don't Do</h2>
+        <ul class="lp-ul">
+          <li data-en-text="We do not share your data with any third parties or advertisers" data-bn-text="আমরা আপনার তথ্য কোনো তৃতীয় পক্ষ বা বিজ্ঞাপনদাতার সাথে শেয়ার করি না">We do <strong>not</strong> share your data with any third parties or advertisers</li>
+          <li data-en-text="We do not use cookies for tracking purposes" data-bn-text="আমরা ট্র্যাকিংয়ের জন্য কুকি ব্যবহার করি না">We do <strong>not</strong> use cookies for tracking purposes</li>
+          <li data-en-text="We do not collect analytics or behavioral data" data-bn-text="আমরা কোনো অ্যানালিটিক্স বা আচরণগত তথ্য সংগ্রহ করি না">We do <strong>not</strong> collect analytics or behavioral data</li>
+          <li data-en-text="We do not transmit any data to external servers" data-bn-text="আমরা কোনো তথ্য বাহ্যিক সার্ভারে পাঠাই না">We do <strong>not</strong> transmit any data to external servers</li>
+        </ul>
+      </div>
+      <div class="lp-section" id="priv-s4">
+        <div class="lp-section-tag" data-en-text="— 04 — DATA DELETION" data-bn-text="— ০৪ — তথ্য মুছে ফেলা">— 04 — DATA DELETION</div>
+        <h2 class="lp-h2" data-en-text="Data Deletion" data-bn-text="তথ্য মুছে ফেলা">Data Deletion</h2>
+        <p class="lp-p" data-en-text="You can delete all stored data at any time by clearing your browser's localStorage via your browser's privacy or data settings. Since data is stored only locally, there is no server-side data to request deletion of." data-bn-text="আপনি যেকোনো সময় আপনার ব্রাউজারের localStorage পরিষ্কার করে সমস্ত সংরক্ষিত তথ্য মুছে ফেলতে পারেন। যেহেতু তথ্য শুধুমাত্র স্থানীয়ভাবে সংরক্ষিত, তাই কোনো সার্ভার-সাইড তথ্য মুছতে হবে না।">You can delete all stored data at any time by clearing your browser's localStorage via your browser's privacy or data settings. Since data is stored only locally, there is no server-side data to request deletion of.</p>
+      </div>
+      <div class="lp-section" id="priv-s5">
+        <div class="lp-section-tag" data-en-text="— 05 — YOUR CONSENT" data-bn-text="— ০৫ — আপনার সম্মতি">— 05 — YOUR CONSENT</div>
+        <h2 class="lp-h2" data-en-text="Your Consent" data-bn-text="আপনার সম্মতি">Your Consent</h2>
+        <p class="lp-p" data-en-text="By registering as a donor on this platform, you consent to your information being stored in your browser's localStorage and being visible to other users of the same browser session who search for donors." data-bn-text="এই প্ল্যাটফর্মে দাতা হিসেবে নিবন্ধন করার মাধ্যমে, আপনি আপনার তথ্য ব্রাউজারের localStorage-এ সংরক্ষণ করতে এবং একই ব্রাউজার সেশনে দাতা খোঁজা ব্যবহারকারীদের কাছে দৃশ্যমান হতে সম্মতি দিচ্ছেন।">By registering as a donor on this platform, you consent to your information being stored in your browser's localStorage and being visible to other users of the same browser session who search for donors.</p>
+      </div>
+      <div class="lp-section" id="priv-s6">
+        <div class="lp-section-tag" data-en-text="— 06 — CONTACT" data-bn-text="— ০৬ — যোগাযোগ">— 06 — CONTACT</div>
+        <h2 class="lp-h2" data-en-text="Contact" data-bn-text="যোগাযোগ">Contact</h2>
+        <p class="lp-p" data-en-text="If you have questions about this privacy policy, please reach out via the developer's GitHub or LinkedIn profile linked in the footer." data-bn-text="এই গোপনীয়তা নীতি সম্পর্কে কোনো প্রশ্ন থাকলে, ফুটারে দেওয়া ডেভেলপারের GitHub বা LinkedIn প্রোফাইলের মাধ্যমে যোগাযোগ করুন।">If you have questions about this privacy policy, please reach out via the developer's GitHub or LinkedIn profile linked in the footer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TERMS & CONDITIONS MODAL ══════════ -->
+<div class="lp-overlay" id="modal-terms">
+  <div class="lp-page">
+    <div class="lp-sidebar">
+      <div class="lp-sidebar-header">
+        <span class="lp-sidebar-icon">📄</span>
+        <span class="lp-sidebar-label" data-en-text="TERMS & CONDITIONS" data-bn-text="শর্তাবলী">TERMS & CONDITIONS</span>
+      </div>
+      <div class="lp-sidebar-label2" data-en-text="CONTENTS" data-bn-text="বিষয়বস্তু">CONTENTS</div>
+      <nav class="lp-toc" id="terms-toc">
+        <a href="#" class="lp-toc-item active" data-sec="terms-s1"><span class="lp-toc-dot"></span><span data-en-text="Educational Purpose" data-bn-text="শিক্ষামূলক উদ্দেশ্য">Educational Purpose</span><span class="lp-toc-num">01</span></a>
+        <a href="#" class="lp-toc-item" data-sec="terms-s2"><span class="lp-toc-dot"></span><span data-en-text="Accurate Information" data-bn-text="সঠিক তথ্য">Accurate Information</span><span class="lp-toc-num">02</span></a>
+        <a href="#" class="lp-toc-item" data-sec="terms-s3"><span class="lp-toc-dot"></span><span data-en-text="No Guarantee" data-bn-text="কোনো গ্যারান্টি নেই">No Guarantee</span><span class="lp-toc-num">03</span></a>
+        <a href="#" class="lp-toc-item" data-sec="terms-s4"><span class="lp-toc-dot"></span><span data-en-text="No Medical Advice" data-bn-text="চিকিৎসা পরামর্শ নয়">No Medical Advice</span><span class="lp-toc-num">04</span></a>
+        <a href="#" class="lp-toc-item" data-sec="terms-s5"><span class="lp-toc-dot"></span><span data-en-text="No Liability" data-bn-text="কোনো দায় নেই">No Liability</span><span class="lp-toc-num">05</span></a>
+        <a href="#" class="lp-toc-item" data-sec="terms-s6"><span class="lp-toc-dot"></span><span data-en-text="Changes & Acceptance" data-bn-text="পরিবর্তন ও স্বীকৃতি">Changes & Acceptance</span><span class="lp-toc-num">06</span></a>
+      </nav>
+    </div>
+    <div class="lp-body" id="terms-body">
+      <button class="lp-close" onclick="closeModal('terms')">✕</button>
+      <div class="lp-section" id="terms-s1">
+        <div class="lp-section-tag" data-en-text="— 01 — EDUCATIONAL PURPOSE" data-bn-text="— ০১ — শিক্ষামূলক উদ্দেশ্য">— 01 — EDUCATIONAL PURPOSE</div>
+        <h2 class="lp-h2" data-en-text="Educational Purpose" data-bn-text="শিক্ষামূলক উদ্দেশ্য">Educational Purpose</h2>
+        <p class="lp-p" data-en-text="Blood Donor Finder Bangladesh is a frontend prototype created for educational and demonstrative purposes. It showcases how web technology can be applied to address social challenges in Bangladesh." data-bn-text="ব্লাড ডোনার ফাইন্ডার বাংলাদেশ শিক্ষামূলক ও প্রদর্শনমূলক উদ্দেশ্যে তৈরি একটি ফ্রন্টএন্ড প্রোটোটাইপ। এটি দেখায় কিভাবে ওয়েব প্রযুক্তি বাংলাদেশের সামাজিক চ্যালেঞ্জ মোকাবেলায় প্রয়োগ করা যায়।">Blood Donor Finder Bangladesh is a frontend prototype created for educational and demonstrative purposes. It showcases how web technology can be applied to address social challenges in Bangladesh.</p>
+        <div class="lp-highlight" data-en-text="This is a demonstration project — not a certified medical service." data-bn-text="এটি একটি প্রদর্শনমূলক প্রকল্প — কোনো প্রত্যয়িত চিকিৎসা সেবা নয়।">This is a demonstration project — not a certified medical service.</div>
+      </div>
+      <div class="lp-section" id="terms-s2">
+        <div class="lp-section-tag" data-en-text="— 02 — ACCURATE INFORMATION" data-bn-text="— ০২ — সঠিক তথ্য প্রদান">— 02 — ACCURATE INFORMATION</div>
+        <h2 class="lp-h2" data-en-text="Accurate Information" data-bn-text="সঠিক তথ্য প্রদান">Accurate Information</h2>
+        <p class="lp-p" data-en-text="Users who register as donors must provide accurate and truthful information. False information may prevent someone from receiving life-saving blood in an emergency situation." data-bn-text="দাতা হিসেবে নিবন্ধনকারী ব্যবহারকারীদের সঠিক ও সত্যিকারের তথ্য প্রদান করতে হবে। মিথ্যা তথ্য জরুরি পরিস্থিতিতে কাউকে জীবন রক্ষাকারী রক্ত পেতে বাধা দিতে পারে।">Users who register as donors must provide accurate and truthful information. False information may prevent someone from receiving life-saving blood in an emergency situation.</p>
+      </div>
+      <div class="lp-section" id="terms-s3">
+        <div class="lp-section-tag" data-en-text="— 03 — NO GUARANTEE OF AVAILABILITY" data-bn-text="— ০৩ — প্রাপ্যতার কোনো গ্যারান্টি নেই">— 03 — NO GUARANTEE OF AVAILABILITY</div>
+        <h2 class="lp-h2" data-en-text="No Guarantee of Availability" data-bn-text="প্রাপ্যতার কোনো গ্যারান্টি নেই">No Guarantee of Availability</h2>
+        <p class="lp-p" data-en-text="This platform does not guarantee the availability of any blood donor at any given time. Donor listings reflect information entered by users and may not be up to date. Always call the donor to confirm availability before proceeding." data-bn-text="এই প্ল্যাটফর্ম যেকোনো সময়ে কোনো রক্তদাতার প্রাপ্যতার গ্যারান্টি দেয় না। দাতার তালিকা ব্যবহারকারীদের দেওয়া তথ্য প্রতিফলিত করে এবং আপ টু ডেট নাও হতে পারে। এগিয়ে যাওয়ার আগে সবসময় দাতাকে কল করে প্রাপ্যতা নিশ্চিত করুন।">This platform does not guarantee the availability of any blood donor at any given time. Donor listings reflect information entered by users and may not be up to date. Always call the donor to confirm availability before proceeding.</p>
+      </div>
+      <div class="lp-section" id="terms-s4">
+        <div class="lp-section-tag" data-en-text="— 04 — NO MEDICAL ADVICE" data-bn-text="— ০৪ — কোনো চিকিৎসা পরামর্শ নয়">— 04 — NO MEDICAL ADVICE</div>
+        <h2 class="lp-h2" data-en-text="No Medical Advice" data-bn-text="কোনো চিকিৎসা পরামর্শ নয়">No Medical Advice</h2>
+        <p class="lp-p" data-en-text="This platform does not provide medical advice. All blood donation and transfusion processes must be carried out by qualified medical professionals in certified healthcare facilities." data-bn-text="এই প্ল্যাটফর্ম কোনো চিকিৎসা পরামর্শ প্রদান করে না। সকল রক্তদান ও রক্ত সঞ্চালন প্রক্রিয়া অবশ্যই প্রত্যয়িত স্বাস্থ্যসেবা প্রতিষ্ঠানে যোগ্য চিকিৎসা পেশাদারদের দ্বারা পরিচালিত হতে হবে।">This platform does not provide medical advice. All blood donation and transfusion processes must be carried out by qualified medical professionals in certified healthcare facilities.</p>
+      </div>
+      <div class="lp-section" id="terms-s5">
+        <div class="lp-section-tag" data-en-text="— 05 — NO LIABILITY" data-bn-text="— ০৫ — কোনো দায়বদ্ধতা নেই">— 05 — NO LIABILITY</div>
+        <h2 class="lp-h2" data-en-text="No Liability" data-bn-text="কোনো দায়বদ্ধতা নেই">No Liability</h2>
+        <p class="lp-p" data-en-text="The developer is not liable for any consequences arising from the use of donor information found on this platform. This is a prototype demonstration and should not be used as a sole resource in medical emergencies." data-bn-text="এই প্ল্যাটফর্মে পাওয়া দাতার তথ্য ব্যবহারের ফলে উদ্ভূত কোনো পরিণতির জন্য ডেভেলপার দায়ী নন। এটি একটি প্রোটোটাইপ ডেমো এবং চিকিৎসা জরুরি পরিস্থিতিতে একমাত্র সম্পদ হিসেবে ব্যবহার করা উচিত নয়।">The developer is not liable for any consequences arising from the use of donor information found on this platform. This is a prototype demonstration and should not be used as a sole resource in medical emergencies.</p>
+      </div>
+      <div class="lp-section" id="terms-s6">
+        <div class="lp-section-tag" data-en-text="— 06 — CHANGES & ACCEPTANCE" data-bn-text="— ০৬ — পরিবর্তন ও স্বীকৃতি">— 06 — CHANGES &amp; ACCEPTANCE</div>
+        <h2 class="lp-h2" data-en-text="Changes & Acceptance" data-bn-text="পরিবর্তন ও স্বীকৃতি">Changes &amp; Acceptance</h2>
+        <p class="lp-p" data-en-text="These terms may be updated at any time. Continued use of the platform constitutes acceptance of the current terms." data-bn-text="এই শর্তগুলো যেকোনো সময় আপডেট করা হতে পারে। প্ল্যাটফর্ম ব্যবহার অব্যাহত রাখা বর্তমান শর্তগুলো গ্রহণ করার ইঙ্গিত দেয়।">These terms may be updated at any time. Continued use of the platform constitutes acceptance of the current terms.</p>
+        <p class="lp-p" data-en-text="By using this website, you agree to these terms and conditions in full. If you disagree with any part, please do not use this platform." data-bn-text="এই ওয়েবসাইট ব্যবহার করার মাধ্যমে, আপনি এই শর্তাবলীতে সম্পূর্ণভাবে সম্মত হচ্ছেন। যদি কোনো অংশের সাথে দ্বিমত পোষণ করেন, অনুগ্রহ করে এই প্ল্যাটফর্ম ব্যবহার করবেন না।">By using this website, you agree to these terms and conditions in full. If you disagree with any part, please do not use this platform.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
